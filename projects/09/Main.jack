@@ -1,0 +1,6 @@
+class Main {
+	fuction void main() {
+		do Output.printString("Hello, Jack world!");
+		return;
+	}
+}
