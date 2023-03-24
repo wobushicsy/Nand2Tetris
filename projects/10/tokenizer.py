@@ -103,7 +103,8 @@ def isIdentifier(char):
 
 
 def main():
-    test = tokenizer("F:\\CSSelfLearning\\5Nand2Tetris\\projects\\10\\ArrayTest\\", "Main.jack")
+    path = os.getcwd()
+    test = tokenizer(path + "\\projects\\10\\ArrayTest\\", "Main.jack")
     test.seperator()
     test.tokenizer()
 
