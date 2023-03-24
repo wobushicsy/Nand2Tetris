@@ -76,6 +76,7 @@ class tokenizer():
         srcfile = open(self.path + self.filename.split(".")[0] + ".tokentmp")
         decfile = open(self.path + self.filename.split(".")[0] + ".token", "w")
         for row in srcfile:
+            row = row.strip()
             if row in self.keyword:
                 tokentype = "keyword"
             elif row in self.symbol:
@@ -86,7 +87,7 @@ class tokenizer():
                 tokentype = "StringConstant"
             else:
                 tokentype = "identifier"
-            decfile.write("<"+tokentype+"> "+row.strip()+" </"+tokentype+">\n")
+            decfile.write("<"+tokentype+"> "+row+" </"+tokentype+">\n")
         srcfile.close()
         decfile.close()
 
