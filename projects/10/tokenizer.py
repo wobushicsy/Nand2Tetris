@@ -90,6 +90,7 @@ class tokenizer():
             decfile.write("<"+tokentype+"> "+row+" </"+tokentype+">\n")
         srcfile.close()
         decfile.close()
+        os.remove(self.path + self.filename.split(".")[0] + ".tokentmp")
 
 def isIdentifier(char):
     return char.isalnum() or char == "_"
