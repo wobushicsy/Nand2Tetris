@@ -1,0 +1,47 @@
+// Provides guidance for loan repayment (assuming no interest rate because of limitation of Hack Computer)
+
+class Main {
+   function void main() {
+      var Loan loan;
+      var int principal, desiredMonthlyPayment, desiredMonthsTillPayoff;
+      var char inputMode, ESCCode, PaymentCode, MonthsCode;
+
+      // CONSTANTS
+      let ESCCode = 140;
+      let PaymentCode = 80;
+      let MonthsCode = 77;
+
+      // Initialize View
+      do View.welcomePrompt();
+
+      // Initialize principal / loan
+      let principal = View.getLoanPrincipal();
+      let loan = Loan.new(principal);
+
+      // Get initial input
+      let inputMode = View.getInputMode();
+
+      while (~(inputMode = ESCCode)) {
+        if (inputMode = PaymentCode) {
+          let desiredMonthlyPayment = View.getDesiredMonthlyPayment();
+          do loan.setMonthlyPayment(desiredMonthlyPayment);
+        }
+
+        if (inputMode = MonthsCode) {
+          let desiredMonthsTillPayoff = View.getDesiredMonthsTillPayoff();
+          do loan.setMonthsTillPayoff(desiredMonthsTillPayoff);
+        }
+
+        do Screen.clearScreen();
+        do View.displayLoanStatusFor(loan);
+        let inputMode = View.getInputMode();
+      }
+
+      do View.printSummaryExit();
+
+      // free
+      do Memory.deAlloc(loan);
+
+      return;
+   }
+}
